@@ -1,7 +1,7 @@
 # Spring properties
 spring:
   application:
-     name: accounts-service  # Service registers under this name
+     name: login-service  # Service registers under this name
   freemarker:
     enabled: false           # Ignore Eureka dashboard FreeMarker templates
   thymeleaf:
@@ -13,7 +13,7 @@ spring:
 error.path: /error
 
 # HTTP Server
-server.port: 2222   # HTTP (Tomcat) port
+server.port: 1111   # HTTP (Tomcat) port
 
 # Enable actuator access without security checks - DEVELOPEMENT ONLY
 management.security.enabled: true

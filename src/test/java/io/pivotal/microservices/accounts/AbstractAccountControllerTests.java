@@ -9,6 +9,9 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.TestPropertySource;
 
+import com.mwt.accounts.controller.AccountsController;
+import com.mwt.accounts.ds.entities.Account;
+
 import io.pivotal.microservices.exceptions.AccountNotFoundException;
 
 // The following are equivalent, we only need to use one.

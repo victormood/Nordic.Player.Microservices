@@ -5,6 +5,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import com.mwt.accounts.AccountsConfiguration;
+
 /**
  * Spring Integration/System test - by using @SpringApplicationConfiguration
  * instead of @ContextConfiguration, it picks up the same configuration that

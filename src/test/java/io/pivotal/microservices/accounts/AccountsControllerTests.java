@@ -5,10 +5,13 @@ import java.util.List;
 
 import org.junit.Before;
 
+import com.mwt.accounts.controller.AccountsController;
+import com.mwt.accounts.ds.AccountRepository;
+import com.mwt.accounts.ds.entities.Account;
+
 public class AccountsControllerTests extends AbstractAccountControllerTests {
 
-	protected static final Account theAccount = new Account(ACCOUNT_1,
-			ACCOUNT_1_NAME);
+	protected static final Account theAccount = new Account(ACCOUNT_1, ACCOUNT_1_NAME);
 
 	protected static class TestAccountRepository implements AccountRepository {
 
