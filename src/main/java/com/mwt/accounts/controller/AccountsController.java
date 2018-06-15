@@ -3,6 +3,7 @@ package com.mwt.accounts.controller;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,7 +44,7 @@ public class AccountsController {
 	 * @throws AccountNotFoundException
 	 *             If the number is not recognised.
 	 */
-	@RequestMapping("/accounts/{accountNumber}")
+	@RequestMapping(value = "/accounts/{accountNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Account byNumber(@PathVariable("accountNumber") String accountNumber) {
 
 		logger.info("accounts-service byNumber() invoked: " + accountNumber);

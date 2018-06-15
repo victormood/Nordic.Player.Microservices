@@ -16,7 +16,7 @@ import static com.mwt.common.constants.ServerNameConstants.*;
  * Run as a micro-service
  * <p>
  * Note that the configuration for this application is imported from
- * {@link LoginConfiguration}. This is a deliberate separation of concerns.
+ * {@link WebServerConfiguration}. This is a deliberate separation of concerns.
  * 
  * @author v.manea
  */

@@ -2,7 +2,7 @@ package localhost;
 
 import com.mwt.accounts.AccountsServer;
 import com.mwt.login.LoginServer;
-import com.mwt.microservices.services.web.WebServer;
+import com.mwt.web.WebServer;
 
 /**
  * Allow the servers to be invoked from the command-line. The jar is built with
