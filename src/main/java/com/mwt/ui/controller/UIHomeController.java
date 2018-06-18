@@ -1,4 +1,4 @@
-package com.mwt.web.controller;
+package com.mwt.ui.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author v.manea
  */
 @Controller
-public class HomeController {
+public class UIHomeController {
 
 	@RequestMapping("/")
 	public String home() {

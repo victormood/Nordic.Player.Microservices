@@ -1,4 +1,4 @@
-package com.mwt.accounts;
+package com.mwt.server.movies;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,14 +24,14 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
  */
 @Configuration
 @ComponentScan({"com.mwt.accounts", "com.mwt.common"})
-@EntityScan("com.mwt.accounts.ds.entities")
-@EnableJpaRepositories("com.mwt.accounts.ds")
+@EntityScan("com.mwt.movies.ds.entities")
+@EnableJpaRepositories("com.mwt.movies.ds")
 @PropertySource("classpath:db-config.properties")
-public class AccountsConfiguration {
+public class MoviesConfiguration {
 
 	protected Logger logger;
 
-	public AccountsConfiguration() {
+	public MoviesConfiguration() {
 		logger = Logger.getLogger(getClass().getName());
 	}
 

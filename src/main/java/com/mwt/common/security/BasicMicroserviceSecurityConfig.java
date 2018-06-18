@@ -9,28 +9,28 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import com.mwt.common.security.filter.JWTAuthorizationFilter;
-import com.mwt.login.security.LoginMicroserviceSecurityConfig;
-
 import java.util.logging.Logger;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 
 /**
- * This class enables the Spring Security module. See
- * {@link LoginMicroserviceSecurityConfig} for how the security context is enabled for
- * the Login Microservice
+ * Configures Spring security to permit only authenticated requests
  * 
  * @author v.manea
  *
  */
 @EnableWebSecurity
+@Order(2)
 public class BasicMicroserviceSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	protected Logger logger = Logger.getLogger(BasicMicroserviceSecurityConfig.class.getName());
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().authorizeRequests().anyRequest().authenticated().and()
+		http.cors().and().csrf().disable()
+				.authorizeRequests().anyRequest().authenticated()
+				.and()
 				.addFilter(new JWTAuthorizationFilter(authenticationManager()))
 				// this disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

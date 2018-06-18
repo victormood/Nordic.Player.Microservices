@@ -9,7 +9,7 @@ angular.module('Authentication')
 
         service.Login = function (username, password, callback) {
         	
-            $http.post('http://localhost:1111/login', { username: username, password: password })
+            $http.post('/login', { username: username, password: password })
                 .success(function (data, status, headers, config) {
                 	var response = { success: true, bearer: headers("Authorization")};
                     callback(response);

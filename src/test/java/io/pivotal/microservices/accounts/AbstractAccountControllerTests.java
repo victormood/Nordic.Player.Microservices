@@ -9,8 +9,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.TestPropertySource;
 
-import com.mwt.accounts.controller.AccountsController;
-import com.mwt.accounts.ds.entities.Account;
+import com.mwt.movies.controller.MoviesController;
+import com.mwt.movies.ds.entities.Movie;
 
 import io.pivotal.microservices.exceptions.AccountNotFoundException;
 
@@ -27,61 +27,61 @@ public abstract class AbstractAccountControllerTests {
 	protected static final String ACCOUNT_1_NAME = "Keri Lee";
 
 	@Autowired
-	AccountsController accountController;
+	MoviesController accountController;
 
 	@Test
 	public void validAccountNumber() {
 		Logger.getGlobal().info("Start validAccountNumber test");
-		Account account = accountController.byNumber(ACCOUNT_1);
+		Movie movie = accountController.byNumber(ACCOUNT_1);
 
-		Assert.assertNotNull(account);
-		Assert.assertEquals(ACCOUNT_1, account.getNumber());
-		Assert.assertEquals(ACCOUNT_1_NAME, account.getOwner());
+		Assert.assertNotNull(movie);
+		Assert.assertEquals(ACCOUNT_1, movie.getNumber());
+		Assert.assertEquals(ACCOUNT_1_NAME, movie.getOwner());
 		Logger.getGlobal().info("End validAccount test");
 	}
 
 	@Test
 	public void validAccountOwner() {
 		Logger.getGlobal().info("Start validAccount test");
-		List<Account> accounts = accountController.byOwner(ACCOUNT_1_NAME);
+		List<Movie> movies = accountController.byOwner(ACCOUNT_1_NAME);
 		Logger.getGlobal().info("In validAccount test");
 
-		Assert.assertNotNull(accounts);
-		Assert.assertEquals(1, accounts.size());
+		Assert.assertNotNull(movies);
+		Assert.assertEquals(1, movies.size());
 
-		Account account = accounts.get(0);
-		Assert.assertEquals(ACCOUNT_1, account.getNumber());
-		Assert.assertEquals(ACCOUNT_1_NAME, account.getOwner());
+		Movie movie = movies.get(0);
+		Assert.assertEquals(ACCOUNT_1, movie.getNumber());
+		Assert.assertEquals(ACCOUNT_1_NAME, movie.getOwner());
 		Logger.getGlobal().info("End validAccount test");
 	}
 
 	@Test
 	public void validAccountOwnerMatches1() {
 		Logger.getGlobal().info("Start validAccount test");
-		List<Account> accounts = accountController.byOwner("Keri");
+		List<Movie> movies = accountController.byOwner("Keri");
 		Logger.getGlobal().info("In validAccount test");
 
-		Assert.assertNotNull(accounts);
-		Assert.assertEquals(1, accounts.size());
+		Assert.assertNotNull(movies);
+		Assert.assertEquals(1, movies.size());
 
-		Account account = accounts.get(0);
-		Assert.assertEquals(ACCOUNT_1, account.getNumber());
-		Assert.assertEquals(ACCOUNT_1_NAME, account.getOwner());
+		Movie movie = movies.get(0);
+		Assert.assertEquals(ACCOUNT_1, movie.getNumber());
+		Assert.assertEquals(ACCOUNT_1_NAME, movie.getOwner());
 		Logger.getGlobal().info("End validAccount test");
 	}
 
 	@Test
 	public void validAccountOwnerMatches2() {
 		Logger.getGlobal().info("Start validAccount test");
-		List<Account> accounts = accountController.byOwner("keri");
+		List<Movie> movies = accountController.byOwner("keri");
 		Logger.getGlobal().info("In validAccount test");
 
-		Assert.assertNotNull(accounts);
-		Assert.assertEquals(1, accounts.size());
+		Assert.assertNotNull(movies);
+		Assert.assertEquals(1, movies.size());
 
-		Account account = accounts.get(0);
-		Assert.assertEquals(ACCOUNT_1, account.getNumber());
-		Assert.assertEquals(ACCOUNT_1_NAME, account.getOwner());
+		Movie movie = movies.get(0);
+		Assert.assertEquals(ACCOUNT_1, movie.getNumber());
+		Assert.assertEquals(ACCOUNT_1_NAME, movie.getOwner());
 		Logger.getGlobal().info("End validAccount test");
 	}
 

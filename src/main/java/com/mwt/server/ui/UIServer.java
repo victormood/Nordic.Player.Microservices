@@ -1,8 +1,11 @@
-package com.mwt.web;
+package com.mwt.server.ui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Import;
+
+import static com.mwt.common.constants.ServerNameConstants.*;
+import static com.mwt.common.constants.SystemPropertyConstants.*;
 
 /**
  * The interface module
@@ -10,8 +13,8 @@ import org.springframework.context.annotation.Import;
  * @author v.manea
  */
 @EnableAutoConfiguration
-@Import(WebServerConfiguration.class)
-public class WebServer {
+@Import(UIServerConfiguration.class)
+public class UIServer {
 
 	/**
 	 * Run the application using Spring Boot and an embedded servlet engine.
@@ -21,7 +24,7 @@ public class WebServer {
 	 */
 	public static void main(String[] args) {
 		// Tell server to look for web-server.properties or web-server.yml
-		System.setProperty("spring.config.name", "web-server");
-		SpringApplication.run(WebServer.class, args);
+		System.setProperty(SPRING_CONFIG_NAME, UI_SERVER);
+		SpringApplication.run(UIServer.class, args);
 	}
 }

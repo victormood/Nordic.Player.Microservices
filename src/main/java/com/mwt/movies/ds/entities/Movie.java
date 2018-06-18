@@ -1,4 +1,4 @@
-package com.mwt.accounts.ds.entities;
+package com.mwt.movies.ds.entities;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "T_ACCOUNT")
-public class Account implements Serializable {
+public class Movie implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -51,11 +51,11 @@ public class Account implements Serializable {
 	/**
 	 * Default constructor for JPA only.
 	 */
-	protected Account() {
+	protected Movie() {
 		balance = BigDecimal.ZERO;
 	}
 
-	public Account(String number, String owner) {
+	public Movie(String number, String owner) {
 		id = getNextId();
 		this.number = number;
 		this.username = owner;

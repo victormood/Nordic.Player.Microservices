@@ -1,4 +1,4 @@
-package com.mwt.login;
+package com.mwt.server.localhost;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,22 +18,20 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
 /**
- * The accounts Spring configuration. This will load dependencies from
- * the @ComponentScan package list. "Login" will need also the common module in
- * order to activate the authentication filter and other common functionality
+ * Configuration file for running all microservices on the localhost
  * 
  * @author v.manea
  */
 @Configuration
-@ComponentScan({ "com.mwt.login"})
-@EntityScan("com.mwt.accounts.ds.entities")
-@EnableJpaRepositories("com.mwt.accounts.ds")
+@ComponentScan({ "com.mwt.login", "com.mwt.ui", "com.mwt.movies" })
+@EntityScan("com.mwt.movies.ds.entities")
+@EnableJpaRepositories("com.mwt.movies.ds")
 @PropertySource("classpath:db-config.properties")
-public class LoginConfiguration {
+public class LocalhostConfiguration {
 
 	protected Logger logger;
 
-	public LoginConfiguration() {
+	public LocalhostConfiguration() {
 		logger = Logger.getLogger(getClass().getName());
 	}
 

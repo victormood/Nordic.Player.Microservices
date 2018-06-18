@@ -15,16 +15,17 @@ import com.mwt.login.filter.JWTAuthenticationFilter;
 import java.util.logging.Logger;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.annotation.Order;
 
 /**
- * This class enables the Spring Security module. See
- * {@link WebServerSecurityConfig} for how the security context is enabled for
- * the all microservices other than Login's one
+ * Configuration class that adds the /login endpoint by enabling the ootb Spring
+ * functionality
  * 
  * @author v.manea
  *
  */
 @EnableWebSecurity
+@Order(1)
 public class LoginMicroserviceSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private UserDetailsService userDetailsService;
@@ -37,7 +38,7 @@ public class LoginMicroserviceSecurityConfig extends WebSecurityConfigurerAdapte
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.cors().and().csrf().disable().authorizeRequests().anyRequest().authenticated().and()
+		http.cors().and().csrf().disable()
 				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
 				// this disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);

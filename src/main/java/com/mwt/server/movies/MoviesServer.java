@@ -1,4 +1,4 @@
-package com.mwt.accounts;
+package com.mwt.server.movies;
 
 import java.util.logging.Logger;
 
@@ -7,24 +7,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
-import com.mwt.accounts.ds.AccountRepository;
+import com.mwt.movies.ds.MoviesRepository;
 
 /**
  * Runs as a micro-service
  * <p>
  * Note that the configuration for this application is imported from
- * {@link AccountsConfiguration}. This is a deliberate separation of concerns.
+ * {@link MoviesConfiguration}. This is a deliberate separation of concerns.
  * 
  * @author Victor Manea
  */
 @EnableAutoConfiguration
-@Import(AccountsConfiguration.class)
-public class AccountsServer {
+@Import(MoviesConfiguration.class)
+public class MoviesServer {
 
 	@Autowired
-	protected AccountRepository accountRepository;
+	protected MoviesRepository moviesRepository;
 
-	protected Logger logger = Logger.getLogger(AccountsServer.class.getName());
+	protected Logger logger = Logger.getLogger(MoviesServer.class.getName());
 
 	/**
 	 * Run the application using Spring Boot and an embedded servlet engine.
@@ -37,6 +37,6 @@ public class AccountsServer {
 		// accounts-server.yml
 		System.setProperty("spring.config.name", "accounts-server");
 
-		SpringApplication.run(AccountsServer.class, args);
+		SpringApplication.run(MoviesServer.class, args);
 	}
 }

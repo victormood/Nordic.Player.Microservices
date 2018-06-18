@@ -1,7 +1,7 @@
 package com.mwt.login.filter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mwt.accounts.ds.entities.Account;
+import com.mwt.movies.ds.entities.Movie;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -35,7 +35,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	public Authentication attemptAuthentication(HttpServletRequest req, HttpServletResponse res)
 			throws AuthenticationException {
 		try {
-			Account creds = new ObjectMapper().readValue(req.getInputStream(), Account.class);
+			Movie creds = new ObjectMapper().readValue(req.getInputStream(), Movie.class);
 
 			return authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(creds.getUsername(),
 					creds.getPassword(), new ArrayList<>()));

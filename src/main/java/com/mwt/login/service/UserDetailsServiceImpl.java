@@ -1,13 +1,13 @@
 package com.mwt.login.service;
 
-import com.mwt.accounts.ds.AccountRepository;
-import com.mwt.accounts.ds.entities.Account;
-
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.mwt.movies.ds.MoviesRepository;
+import com.mwt.movies.ds.entities.Movie;
 
 import static java.util.Collections.emptyList;
 
@@ -19,15 +19,15 @@ import static java.util.Collections.emptyList;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	
-	private AccountRepository accountRepository;
+	private MoviesRepository moviesRepository;
 
-	public UserDetailsServiceImpl(AccountRepository applicationUserRepository) {
-		this.accountRepository = applicationUserRepository;
+	public UserDetailsServiceImpl(MoviesRepository applicationUserRepository) {
+		this.moviesRepository = applicationUserRepository;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Account applicationUser = accountRepository.findByUsername(username);
+		Movie applicationUser = moviesRepository.findByUsername(username);
 		
 		if (applicationUser == null) {
 			throw new UsernameNotFoundException(username);

@@ -16,7 +16,7 @@ angular.module('Home')
 			  headers: new Headers(headerDict), 
 			};
         	
-            $http.get('http://localhost:2222/accounts/' + accountNo, requestOptions)
+            $http.get('/accounts/' + accountNo, requestOptions)
                 .success(function (data, status, headers, config) {
                 	var response = { success: true, data: data};
                     callback(response);

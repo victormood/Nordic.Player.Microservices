@@ -1,4 +1,4 @@
-package com.mwt.login;
+package com.mwt.server.localhost;
 
 import java.util.logging.Logger;
 
@@ -7,27 +7,24 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Import;
 
-import com.mwt.accounts.ds.AccountRepository;
+import com.mwt.movies.ds.MoviesRepository;
 
 import static com.mwt.common.constants.SystemPropertyConstants.*;
 import static com.mwt.common.constants.ServerNameConstants.*;
 
 /**
- * Run as a micro-service
- * <p>
- * Note that the configuration for this application is imported from
- * {@link WebServerConfiguration}. This is a deliberate separation of concerns.
+ * Used for running all microservices on localhost
  * 
  * @author v.manea
  */
 @EnableAutoConfiguration
-@Import(LoginConfiguration.class)
-public class LoginServer {
+@Import(LocalhostConfiguration.class)
+public class LocalhostServer {
 
 	@Autowired
-	protected AccountRepository accountRepository;
+	protected MoviesRepository moviesRepository;
 
-	protected Logger logger = Logger.getLogger(LoginServer.class.getName());
+	protected Logger logger = Logger.getLogger(LocalhostServer.class.getName());
 
 	/**
 	 * Run the application using Spring Boot and an embedded servlet engine.
@@ -37,8 +34,8 @@ public class LoginServer {
 	 */
 	public static void main(String[] args) {
 		// Tell server to look for accounts-server.properties or accounts-server.yml
-		System.setProperty(SPRING_CONFIG_NAME, LOGIN_SERVER);
+		System.setProperty(SPRING_CONFIG_NAME, UI_SERVER);
 
-		SpringApplication.run(LoginServer.class, args);
+		SpringApplication.run(LocalhostServer.class, args);
 	}
 }

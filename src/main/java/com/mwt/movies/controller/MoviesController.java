@@ -1,4 +1,4 @@
-package com.mwt.accounts.controller;
+package com.mwt.movies.controller;
 
 import java.util.logging.Logger;
 
@@ -8,31 +8,31 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mwt.accounts.ds.AccountRepository;
-import com.mwt.accounts.ds.entities.Account;
+import com.mwt.movies.ds.MoviesRepository;
+import com.mwt.movies.ds.entities.Movie;
 
 /**
- * A RESTFul controller for accessing account information.
+ * A RESTFul controller for accessing movie information.
  * 
- * @author Victor Manea
+ * @author v.manea
  */
 @RestController
-public class AccountsController {
+public class MoviesController {
 
-	protected Logger logger = Logger.getLogger(AccountsController.class.getName());
-	protected AccountRepository accountRepository;
+	protected Logger logger = Logger.getLogger(MoviesController.class.getName());
+	protected MoviesRepository moviesRepository;
 
 	/**
 	 * Create an instance plugging in the respository of Accounts.
 	 * 
-	 * @param accountRepository
+	 * @param moviesRepository
 	 *            An account repository implementation.
 	 */
 	@Autowired
-	public AccountsController(AccountRepository accountRepository) {
-		this.accountRepository = accountRepository;
+	public MoviesController(MoviesRepository moviesRepository) {
+		this.moviesRepository = moviesRepository;
 
-		logger.info("AccountRepository says system has " + accountRepository.countAccounts() + " accounts");
+		logger.info("MoviesRepository says system has " + moviesRepository.countAccounts() + " accounts");
 	}
 
 	/**
@@ -45,16 +45,16 @@ public class AccountsController {
 	 *             If the number is not recognised.
 	 */
 	@RequestMapping(value = "/accounts/{accountNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Account byNumber(@PathVariable("accountNumber") String accountNumber) {
+	public Movie byNumber(@PathVariable("accountNumber") String accountNumber) {
 
 		logger.info("accounts-service byNumber() invoked: " + accountNumber);
-		Account account = accountRepository.findByNumber(accountNumber);
-		logger.info("accounts-service byNumber() found: " + account);
+		Movie movie = moviesRepository.findByNumber(accountNumber);
+		logger.info("accounts-service byNumber() found: " + movie);
 
-		if (account == null)
+		if (movie == null)
 			return null;
 		else {
-			return account;
+			return movie;
 		}
 	}
 }

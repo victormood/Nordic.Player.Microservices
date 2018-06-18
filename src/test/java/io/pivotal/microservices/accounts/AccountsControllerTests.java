@@ -5,18 +5,18 @@ import java.util.List;
 
 import org.junit.Before;
 
-import com.mwt.accounts.controller.AccountsController;
-import com.mwt.accounts.ds.AccountRepository;
-import com.mwt.accounts.ds.entities.Account;
+import com.mwt.movies.controller.MoviesController;
+import com.mwt.movies.ds.MoviesRepository;
+import com.mwt.movies.ds.entities.Movie;
 
 public class AccountsControllerTests extends AbstractAccountControllerTests {
 
-	protected static final Account theAccount = new Account(ACCOUNT_1, ACCOUNT_1_NAME);
+	protected static final Movie theAccount = new Movie(ACCOUNT_1, ACCOUNT_1_NAME);
 
-	protected static class TestAccountRepository implements AccountRepository {
+	protected static class TestAccountRepository implements MoviesRepository {
 
 		@Override
-		public Account findByNumber(String accountNumber) {
+		public Movie findByNumber(String accountNumber) {
 			if (accountNumber.equals(ACCOUNT_1))
 				return theAccount;
 			else
@@ -24,13 +24,13 @@ public class AccountsControllerTests extends AbstractAccountControllerTests {
 		}
 
 		@Override
-		public List<Account> findByOwnerContainingIgnoreCase(String partialName) {
-			List<Account> accounts = new ArrayList<Account>();
+		public List<Movie> findByOwnerContainingIgnoreCase(String partialName) {
+			List<Movie> movies = new ArrayList<Movie>();
 
 			if (ACCOUNT_1_NAME.toLowerCase().indexOf(partialName.toLowerCase()) != -1)
-				accounts.add(theAccount);
+				movies.add(theAccount);
 
-			return accounts;
+			return movies;
 		}
 
 		@Override
@@ -43,6 +43,6 @@ public class AccountsControllerTests extends AbstractAccountControllerTests {
 
 	@Before
 	public void setup() {
-		accountController = new AccountsController(testRepo);
+		accountController = new MoviesController(testRepo);
 	}
 }

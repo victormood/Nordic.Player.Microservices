@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.mwt.accounts.AccountsConfiguration;
+import com.mwt.server.movies.MoviesConfiguration;
 
 /**
  * Spring Integration/System test - by using @SpringApplicationConfiguration
@@ -22,7 +22,7 @@ import com.mwt.accounts.AccountsConfiguration;
  */
 @RunWith(SpringRunner.class)
 @EnableAutoConfiguration
-@SpringBootTest(classes = AccountsConfiguration.class, properties = { "eureka.client.enabled=false" })
+@SpringBootTest(classes = MoviesConfiguration.class, properties = { "eureka.client.enabled=false" })
 public class AccountsControllerIntegrationTests extends AbstractAccountControllerTests {
 
 }
