@@ -5,27 +5,23 @@ import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Import;
-
-import com.mwt.movies.ds.MoviesRepository;
-
+import org.springframework.context.annotation.ComponentScan;
+import com.mwt.login.ds.UserRepository;
 import static com.mwt.common.constants.SystemPropertyConstants.*;
 import static com.mwt.common.constants.ServerNameConstants.*;
 
 /**
- * Run as a micro-service
- * <p>
- * Note that the configuration for this application is imported from
- * {@link UIServerConfiguration}. This is a deliberate separation of concerns.
+ * Login microservice starting point - this will start an embeded server running
+ * Login server
  * 
  * @author v.manea
  */
 @EnableAutoConfiguration
-@Import(LoginConfiguration.class)
+@ComponentScan({ "com.mwt.login" })
 public class LoginServer {
 
 	@Autowired
-	protected MoviesRepository moviesRepository;
+	protected UserRepository userRepository;
 
 	protected Logger logger = Logger.getLogger(LoginServer.class.getName());
 
@@ -36,7 +32,7 @@ public class LoginServer {
 	 *            Program arguments - ignored.
 	 */
 	public static void main(String[] args) {
-		// Tell server to look for accounts-server.properties or accounts-server.yml
+		// Tell server to look for login-server.properties or login-server.yml
 		System.setProperty(SPRING_CONFIG_NAME, LOGIN_SERVER);
 
 		SpringApplication.run(LoginServer.class, args);

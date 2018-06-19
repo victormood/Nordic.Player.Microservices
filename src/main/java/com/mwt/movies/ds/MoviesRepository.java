@@ -1,43 +1,29 @@
 package com.mwt.movies.ds;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 
 import com.mwt.movies.ds.entities.Movie;
 
 /**
- * Repository for Movie data implemented using Spring Data JPA.
+ * Repository for User data implemented using Spring Data JPA.
  * 
  * @author v.manea
  */
 public interface MoviesRepository extends Repository<Movie, Long> {
-	/**
-	 * Find an account with the specified account number.
-	 *
-	 * @param accountNumber
-	 * @return The account if found, null otherwise.
-	 */
-	public Movie findByNumber(String accountNumber);
 	
 	/**
-	 * Find account with specific username
-	 * 
-	 * @param username
-	 * @return the Movie which has that username
+	 * Find all movies
 	 */
-	public Movie findByUsername(String username);
-	
-	/**
-	 * 
-	 */
-	@Query("SELECT count(*) from Movie where username = ?1 and password = ?2")
-	public int findByUsernameAndPassword(String usr, String psw);
+	public List<Movie> findAll();
 
 	/**
-	 * Fetch the number of accounts known to the system.
+	 * Fetch the number of movies known to the system.
 	 * 
-	 * @return The number of accounts.
+	 * @return The number of movies.
 	 */
 	@Query("SELECT count(*) from Movie")
-	public int countAccounts();
+	public int countMovies();
 }

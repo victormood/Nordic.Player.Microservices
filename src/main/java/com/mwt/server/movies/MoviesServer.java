@@ -1,24 +1,24 @@
 package com.mwt.server.movies;
 
+import static com.mwt.common.constants.ServerNameConstants.*;
+import static com.mwt.common.constants.SystemPropertyConstants.SPRING_CONFIG_NAME;
+
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Import;
-
+import org.springframework.context.annotation.ComponentScan;
 import com.mwt.movies.ds.MoviesRepository;
 
 /**
- * Runs as a micro-service
- * <p>
- * Note that the configuration for this application is imported from
- * {@link MoviesConfiguration}. This is a deliberate separation of concerns.
+ * "Movies" microservice starting point - this will start an embedded server running
+ * "Movies" server
  * 
- * @author Victor Manea
+ * @author v.manea
  */
 @EnableAutoConfiguration
-@Import(MoviesConfiguration.class)
+@ComponentScan({"com.mwt.movies", "com.mwt.common"})
 public class MoviesServer {
 
 	@Autowired
@@ -33,9 +33,8 @@ public class MoviesServer {
 	 *            Program arguments - ignored.
 	 */
 	public static void main(String[] args) {
-		// Tell server to look for accounts-server.properties or
-		// accounts-server.yml
-		System.setProperty("spring.config.name", "accounts-server");
+		// Tell server to look for movies-server.properties or movies-server.yml
+		System.setProperty(SPRING_CONFIG_NAME, MOVIES_SERVER);
 
 		SpringApplication.run(MoviesServer.class, args);
 	}

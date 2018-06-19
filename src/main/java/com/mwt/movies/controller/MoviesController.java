@@ -1,10 +1,9 @@
 package com.mwt.movies.controller;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,10 +19,11 @@ import com.mwt.movies.ds.entities.Movie;
 public class MoviesController {
 
 	protected Logger logger = Logger.getLogger(MoviesController.class.getName());
+	
 	protected MoviesRepository moviesRepository;
 
 	/**
-	 * Create an instance plugging in the respository of Accounts.
+	 * Create an instance plugging in the respository of Movies.
 	 * 
 	 * @param moviesRepository
 	 *            An account repository implementation.
@@ -32,7 +32,7 @@ public class MoviesController {
 	public MoviesController(MoviesRepository moviesRepository) {
 		this.moviesRepository = moviesRepository;
 
-		logger.info("MoviesRepository says system has " + moviesRepository.countAccounts() + " accounts");
+		logger.info("MovieRepository says system has " + moviesRepository.countMovies() + " movies");
 	}
 
 	/**
@@ -44,17 +44,10 @@ public class MoviesController {
 	 * @throws AccountNotFoundException
 	 *             If the number is not recognised.
 	 */
-	@RequestMapping(value = "/accounts/{accountNumber}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public Movie byNumber(@PathVariable("accountNumber") String accountNumber) {
+	@RequestMapping(value = "/movies")
+	public List<Movie> findAll() {
+		List<Movie> movies = moviesRepository.findAll();
 
-		logger.info("accounts-service byNumber() invoked: " + accountNumber);
-		Movie movie = moviesRepository.findByNumber(accountNumber);
-		logger.info("accounts-service byNumber() found: " + movie);
-
-		if (movie == null)
-			return null;
-		else {
-			return movie;
-		}
+		return movies;
 	}
 }

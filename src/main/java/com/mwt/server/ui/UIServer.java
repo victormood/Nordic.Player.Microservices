@@ -2,8 +2,7 @@ package com.mwt.server.ui;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Import;
-
+import org.springframework.context.annotation.ComponentScan;
 import static com.mwt.common.constants.ServerNameConstants.*;
 import static com.mwt.common.constants.SystemPropertyConstants.*;
 
@@ -13,7 +12,7 @@ import static com.mwt.common.constants.SystemPropertyConstants.*;
  * @author v.manea
  */
 @EnableAutoConfiguration
-@Import(UIServerConfiguration.class)
+@ComponentScan({"com.mwt.ui", "com.mwt.common"})
 public class UIServer {
 
 	/**

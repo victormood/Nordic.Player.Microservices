@@ -1,21 +1,20 @@
-package com.mwt.movies.ds.entities;
+package com.mwt.login.ds.entities;
 
 import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * Persistent account entity with JPA markup. Accounts are stored in an H2
+ * Persistent user entity with JPA markup. Accounts are stored in an H2
  * relational database.
  * 
- * @author Victor Manea
+ * @author v.manea
  */
 @Entity
-@Table(name = "MOVIE")
-public class Movie implements Serializable {
+@Table(name = "USER")
+public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -24,8 +23,14 @@ public class Movie implements Serializable {
 	@Id
 	protected Long id;
 
-	@Column(name = "title")
-	protected String title;
+	@Column(name = "username")
+	protected String username;
+
+	@Column(name = "password")
+	protected String password;
+
+	@Column(name = "role")
+	protected String role;
 
 	/**
 	 * This is a very simple, and non-scalable solution to generating unique ids.
@@ -43,12 +48,12 @@ public class Movie implements Serializable {
 	/**
 	 * Default constructor for JPA only.
 	 */
-	protected Movie() {
+	protected User() {
 	}
 
-	public Movie(String title) {
+	public User(String username) {
 		id = getNextId();
-		this.title = title;
+		this.username = username;
 	}
 
 	public long getId() {
@@ -65,12 +70,33 @@ public class Movie implements Serializable {
 		this.id = id;
 	}
 
-	public String getTite() {
-		return this.title;
+	public String getUsername() {
+		return username;
 	}
 
-	protected void setTitle(String title) {
-		this.title = title;
+	protected void setUsername(String owner) {
+		this.username = owner;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return id + ": " + username;
 	}
 
 }
