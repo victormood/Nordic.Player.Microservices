@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -24,6 +25,7 @@ public class AudiosController {
 	protected AudiosRepository audiosRepository;
 	
 	@RequestMapping(value = "/list")
+	@PreAuthorize("hasRole('AUDIO') or hasRole('ADMIN')")
 	public List<Audio> findAll() {
 		List<Audio> audios = audiosRepository.findAll();
 

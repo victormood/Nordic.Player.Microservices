@@ -1,5 +1,6 @@
 package com.mwt.security.monolit;
 
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -24,6 +25,7 @@ import org.springframework.context.annotation.Bean;
  *
  */
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class MonolitSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	protected Logger logger = Logger.getLogger(LoginMicroserviceSecurityConfig.class.getName());
@@ -37,13 +39,8 @@ public class MonolitSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()
-				.authorizeRequests()
-					.antMatchers("/movies/**").hasAnyRole("MOVIE", "ADMIN")
-					.antMatchers("/audios/**").hasAnyRole("AUDIO", "ADMIN")
-				.and()
 				.addFilter(new JWTAuthorizationFilter(authenticationManager()))
 				.addFilter(new JWTAuthenticationFilter(authenticationManager(), userDetailsService))
-				// this disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
 
