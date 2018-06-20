@@ -18,7 +18,7 @@ import static com.mwt.common.constants.ServerNameConstants.*;
  * @author v.manea
  */
 @EnableAutoConfiguration
-@ComponentScan({ "com.mwt.ui", "com.mwt.login", "com.mwt.movies", "com.mwt.common"})
+@ComponentScan({ "com.mwt.ui", "com.mwt.login", "com.mwt.movies", "com.mwt.common", "com.mwt.security.monolit"})
 public class LocalhostServer {
 	
 	@Autowired

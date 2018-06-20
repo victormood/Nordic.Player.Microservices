@@ -12,7 +12,7 @@ import static com.mwt.common.constants.SystemPropertyConstants.*;
  * @author v.manea
  */
 @EnableAutoConfiguration
-@ComponentScan({"com.mwt.ui", "com.mwt.common"})
+@ComponentScan({"com.mwt.ui", "com.mwt.common", "com.mwt.security.ui"})
 public class UIServer {
 
 	/**

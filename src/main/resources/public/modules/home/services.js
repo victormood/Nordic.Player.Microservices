@@ -2,12 +2,12 @@
  
 angular.module('Home')
  
-.factory('AccountsService',
+.factory('MoviesService',
     ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
     function (Base64, $http, $cookieStore, $rootScope, $timeout) {
         var service = {};
 
-        service.getAccountByNumber = function (accountNo, callback) {
+        service.getMovieList = function (callback) {
         	const headerDict = {
 			  'Authorizatione': $http.defaults.headers.common['Authorization']
 			}
@@ -16,7 +16,7 @@ angular.module('Home')
 			  headers: new Headers(headerDict), 
 			};
         	
-            $http.get('/accounts/' + accountNo, requestOptions)
+            $http.get('/movies/list', requestOptions)
                 .success(function (data, status, headers, config) {
                 	var response = { success: true, data: data};
                     callback(response);

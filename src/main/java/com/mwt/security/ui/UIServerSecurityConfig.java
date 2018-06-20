@@ -1,52 +1,36 @@
-package com.mwt.login.security;
+package com.mwt.security.ui;
 
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.mwt.login.filter.JWTAuthenticationFilter;
-
 import java.util.logging.Logger;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 
 /**
- * Configuration class that adds the /login endpoint by enabling the ootb Spring
- * functionality
+ * Configuration class that allows access to server resources
  * 
  * @author v.manea
  *
  */
 @EnableWebSecurity
-@Order(1)
-public class LoginMicroserviceSecurityConfig extends WebSecurityConfigurerAdapter {
+public class UIServerSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	private UserDetailsService userDetailsService;
-
-	protected Logger logger = Logger.getLogger(LoginMicroserviceSecurityConfig.class.getName());
-
-	public LoginMicroserviceSecurityConfig(UserDetailsService userDetailsService) {
-		this.userDetailsService = userDetailsService;
-	}
+	protected Logger logger = Logger.getLogger(UIServerSecurityConfig.class.getName());
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		System.out.println("UIServerSecurityConfig init");
 		http.cors().and().csrf().disable()
-				.addFilter(new JWTAuthenticationFilter(authenticationManager()))
+				.authorizeRequests().antMatchers("/", "/js/**", "/css/**", "/modules/authentication/**").permitAll()
+				.and()
 				// this disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-	}
-
-	@Override
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsService);
 	}
 
 	@Bean

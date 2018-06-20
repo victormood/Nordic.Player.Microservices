@@ -18,7 +18,7 @@ import com.mwt.movies.ds.MoviesRepository;
  * @author v.manea
  */
 @EnableAutoConfiguration
-@ComponentScan({"com.mwt.movies", "com.mwt.common"})
+@ComponentScan({"com.mwt.movies", "com.mwt.common", "com.mwt.security.api"})
 public class MoviesServer {
 
 	@Autowired

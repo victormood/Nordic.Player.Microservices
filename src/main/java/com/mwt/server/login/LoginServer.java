@@ -17,7 +17,7 @@ import static com.mwt.common.constants.ServerNameConstants.*;
  * @author v.manea
  */
 @EnableAutoConfiguration
-@ComponentScan({ "com.mwt.login" })
+@ComponentScan({ "com.mwt.login", "com.mwt.security.login" })
 public class LoginServer {
 
 	@Autowired

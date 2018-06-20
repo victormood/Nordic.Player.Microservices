@@ -1,35 +1,48 @@
-package com.mwt.ui.security;
+package com.mwt.security.monolit;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.mwt.login.filter.JWTAuthenticationFilter;
+import com.mwt.security.api.JWTAuthorizationFilter;
+import com.mwt.security.login.LoginMicroserviceSecurityConfig;
+
 import java.util.logging.Logger;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.annotation.Order;
 
 /**
- * Configuration class that allows access to server resources
+ * Configuration class that enables security for the application when running as a monolit
  * 
  * @author v.manea
  *
  */
 @EnableWebSecurity
-@Order(3)
-public class UIServerSecurityConfig extends WebSecurityConfigurerAdapter {
+public class MonolitSecurityConfig extends WebSecurityConfigurerAdapter {
 
-	protected Logger logger = Logger.getLogger(UIServerSecurityConfig.class.getName());
+	protected Logger logger = Logger.getLogger(LoginMicroserviceSecurityConfig.class.getName());
+
+	private UserDetailsService userDetailsService;
+
+	public MonolitSecurityConfig(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable()
-				.authorizeRequests().antMatchers("/", "/js/**", "/css/**", "/modules/**").permitAll()
+				.authorizeRequests()
+					.antMatchers("/movies/**").hasAnyRole("MOVIE", "ADMIN")
+					.antMatchers("/audios/**").hasAnyRole("AUDIO", "ADMIN")
 				.and()
+				.addFilter(new JWTAuthorizationFilter(authenticationManager()))
+				.addFilter(new JWTAuthenticationFilter(authenticationManager(), userDetailsService))
 				// this disables session creation on Spring Security
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 	}
