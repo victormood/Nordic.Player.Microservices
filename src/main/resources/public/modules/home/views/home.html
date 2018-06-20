@@ -2,16 +2,18 @@
 
 <p>Yeeey ! You're logged in!!</p>
 
-<div ng-show="error" class="alert alert-danger">{{error}}</div>
-
 <p>
-	Lista filme: <br/>
-	<textarea disabled ng-model="movieList" />
+	Lista filme: <div ng-show="movieError" class="alert alert-danger">{{movieError}}</div>
+	<br/>
+	<textarea disabled ng-show="movieList" ng-model="movieList">
+	</textarea>
 </p>
 
 <p>
-	Lista muzica: <br />
-	<textarea disabled ng-model="audioList" />
+	Lista muzica: <div ng-show="musicError" class="alert alert-danger">{{musicError}}</div>
+	<br />
+	<textarea disabled ng-show="audioList" ng-model="audioList">
+	</textarea>
 </p>
 
 <p>

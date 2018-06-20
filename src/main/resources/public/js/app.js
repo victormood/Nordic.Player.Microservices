@@ -33,7 +33,7 @@ angular.module('BasicHttpAuthExample', [
         // keep user logged in after page refresh
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.bearer;
+            $http.defaults.headers.common['Authorization'] = $rootScope.globals.currentUser.bearer;
         }
  
         $rootScope.$on('$locationChangeStart', function (event, next, current) {

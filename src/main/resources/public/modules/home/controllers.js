@@ -14,7 +14,19 @@ angular.module('Home')
     	            $scope.movieList = "Movie was not found !";
     	        }
     	    } else {
-    	    	$scope.error = "Nu ai drepturi suficiente !";
+    	    	$scope.movieError = "Nu ai drepturi suficiente !";
+    	    }
+    	});
+    	
+    	MoviesService.getMusicList(function(response) {
+    	    if (response.success) {
+    	        if (response.data) {
+    	        	$scope.audioList = JSON.stringify(response.data);
+    	        } else {
+    	            $scope.audioList = "No music was not found !";
+    	        }
+    	    } else {
+    	    	$scope.musicError = "Nu ai drepturi suficiente !";
     	    }
     	});
       
